@@ -12,7 +12,7 @@ instruments = [0,1,2,4,5,6,7,8,9,13,14,15,16,19,21,23,24,25,26,27,28,29,30,
 	32,33,34,35,36,37,38,40,42,44,45,46,47,48,53,56,57,58,59,60,61,64,65,66,
 	67,68,69,70,71,72,73,74,75,76,79,80,84,88,94,95,98,101,102,104,114,115,
 	120,122,125]
-	
+
 instrument = instruments[randint(0,len(instruments)-1)]
 note = 74
 volume = 127
@@ -48,10 +48,10 @@ def playSound(note):
 
 def stopSound(note):
 	midiOutput.note_off(note,127)
-	
+
 pinState = [0,0,0]
 pinSound = [60,64,67]
-	
+
 try:
 	while True:
 		#change instruments
@@ -67,7 +67,7 @@ try:
 					instrument = instruments[len(instruments)-1]
 				print(instrument)
 			midiOutput.set_instrument(instrument)
-		
+
 		#play note assigned to button
 		for v in keyPins:
 			if GPIO.event_detected(v):
@@ -77,14 +77,14 @@ try:
 				else:
 					stopSound(pinSound[keyPins.index(v)])
 					pinState[keyPins.index(v)] = 0
-		
+
 		if not GPIO.input(25):
 			for i in pinSound:
 				midiOutput.note_off(i,127)
 		sleep(0.0001)
-			
+
 except KeyboardInterrupt:
-	print("\nClosing...")
+	print("\nClosing keyboard...")
 	del midiOutput
 	sys.exit()
 	pygame.midi.quit()
