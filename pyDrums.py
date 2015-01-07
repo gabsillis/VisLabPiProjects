@@ -17,12 +17,12 @@ def playSound(sound):
 startClock = pygame.time.Clock()
 while True:
 	for e in pygame.event.get():
-		if e.type == pygame.QUIT: 
+		if e.type == pygame.QUIT:
 			sys.exit()
 			pygame.mixer.quit()
 		elif e.type == pygame.KEYDOWN:
 			keyName = pygame.key.name(e.key)
-			if keyName == "escape": 
+			if keyName == "escape":
 				sys.exit()
 				pygame.mixer.quit()
 			elif keyName == "up":
@@ -37,4 +37,4 @@ while True:
 				playSound("TomLow")
 		elif e.type == pygame.MOUSEBUTTONDOWN:
 			playSound("Crash")
-	startClock.tick_busy_loop(50)
+	startClock.tick_busy_loop(60)
